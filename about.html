@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — Groove</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="shortcut icon" href="assents/images/SCR-20260314-rkby.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css"/>
+  <link rel="stylesheet" href="css/header.css"/>
+  <link rel="stylesheet" href="css/footer.css"/>
+  <link rel="stylesheet" href="css/about.css"/>
+</head>
+<body class="page-static">
+
+  <div class="bg-atmosphere">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="grain"></div>
+  </div>
+
+  <div id="header-mount"></div>
+
+  <main class="static-main">
+    <div class="static-container">
+      <h1 class="static-title">About Groove</h1>
+      <p class="static-lead">A love letter to vinyl — built with code, played in your browser.</p>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>Real Vinyl Feel</h3>
+          <p>A fully animated turntable with a tonearm, spinning disc, and needle drop — all built in pure CSS and JS. No canvas, no WebGL.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <h3>Your Music</h3>
+          <p>Add any audio file from your device. Upload a cover photo, set the artist name, and it lives in your library across page refreshes via IndexedDB.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3>No Server Needed</h3>
+          <p>Groove runs entirely in the browser. Open the HTML file locally and it works. Everything — audio, covers, library — stays on your machine.</p>
+        </div>
+      </div>
+
+      <div class="about-cta">
+        <a href="index.html" class="btn-primary">Open the Player</a>
+        <a href="register.html" class="btn-secondary">Create an Account</a>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="js/header.js"></script>
+  <script src="js/footer.js"></script>
+</body>
+</html>
