@@ -123,3 +123,74 @@
 
   .nav-link-cta { text-align: center; margin-top: 4px; }
 }
+
+.header-user-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.header-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.header-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.header-user-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header-user-email {
+  font-size: 10px;
+  color: var(--text3);
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header-logout-btn {
+  background: none;
+  border: none;
+  color: var(--text3);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s, background 0.15s;
+}
+
+.header-logout-btn:hover {
+  color: #e74c3c;
+  background: rgba(231,76,60,0.1);
+}
+
+@media (max-width: 640px) {
+  .header-user-name, .header-user-email { display: none; }
+  .header-user-menu { padding: 4px; }
+}

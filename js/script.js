@@ -4,8 +4,8 @@ const DEFAULT_TRACKS = [
     artist: "Dominic Fike",
     duration: "1:39",
     color: "#2a1a0a",
-    cover: "assents/images/babydol.jpg",
-    src: "assents/audio/Babydoll.mp3",
+    cover: "assets/images/babydol.jpg",
+    src: "assets/audio/Babydoll.mp3",
     theme: { bg: "#1a0f05", accent: "#e8a04a", orb1: "#e8a04a", orb2: "#c4622d" },
   },
   {
@@ -13,8 +13,8 @@ const DEFAULT_TRACKS = [
     artist: "Tame Impala",
     duration: "4:34",
     color: "#0a1020",
-    cover: "assents/images/borderline.jpeg",
-    src: "assents/audio/borderline.mp3",
+    cover: "assets/images/borderline.jpeg",
+    src: "assets/audio/borderline.mp3",
     theme: { bg: "#05080f", accent: "#4a90d9", orb1: "#4a90d9", orb2: "#7b5ea7" },
   },
   {
@@ -22,8 +22,8 @@ const DEFAULT_TRACKS = [
     artist: "Mac DeMarco",
     duration: "3:51",
     color: "#0a1a10",
-    cover: "assents/images/pic.jpeg",
-    src: "assents/audio/Chamber Of Reflection - Mac DeMarco.mp3",
+    cover: "assets/images/pic.jpeg",
+    src: "assets/audio/Chamber Of Reflection - Mac DeMarco.mp3",
     theme: { bg: "#050d08", accent: "#4abf7a", orb1: "#2d8c52", orb2: "#1a5c38" },
   },
   {
@@ -31,8 +31,8 @@ const DEFAULT_TRACKS = [
     artist: "Yasuha",
     duration: "3:30",
     color: "#1a0a0a",
-    cover: "assents/images/flydaychinatown.jpeg",
-    src: "assents/audio/chinatown.mp3",
+    cover: "assets/images/flydaychinatown.jpeg",
+    src: "assets/audio/chinatown.mp3",
     theme: { bg: "#0f0505", accent: "#e85555", orb1: "#e85555", orb2: "#c43a3a" },
   },
   {
@@ -40,8 +40,8 @@ const DEFAULT_TRACKS = [
     artist: "Mac DeMarco",
     duration: "3:31",
     color: "#1a100a",
-    cover: "assents/images/heart_to_heart.png",
-    src: "assents/audio/hearttoheart.mp3",
+    cover: "assets/images/heart_to_heart.png",
+    src: "assets/audio/hearttoheart.mp3",
     theme: { bg: "#100a05", accent: "#f0a050", orb1: "#f0a050", orb2: "#d4623a" },
   },
   {
@@ -49,8 +49,8 @@ const DEFAULT_TRACKS = [
     artist: "Joy Again",
     duration: "3:01",
     color: "#0a0a1a",
-    cover: "assents/images/looking_out_for_you.jpg",
-    src: "assents/audio/LookingOutForYou.mp3",
+    cover: "assets/images/looking_out_for_you.jpg",
+    src: "assets/audio/LookingOutForYou.mp3",
     theme: { bg: "#05050f", accent: "#a078d4", orb1: "#7b50b4", orb2: "#4a3080" },
   },
   {
@@ -58,8 +58,8 @@ const DEFAULT_TRACKS = [
     artist: "The Rah Band",
     duration: "6:44",
     color: "#050a1a",
-    cover: "assents/images/messages_from_the_stars.jpeg",
-    src: "assents/audio/MessagesfromtheStars.mp3",
+    cover: "assets/images/messages_from_the_stars.jpeg",
+    src: "assets/audio/MessagesfromtheStars.mp3",
     theme: { bg: "#020510", accent: "#50c8f0", orb1: "#2090c8", orb2: "#7b5ea7" },
   },
   {
@@ -67,8 +67,8 @@ const DEFAULT_TRACKS = [
     artist: "Hotel Ugly",
     duration: "2:44",
     color: "#1a1505",
-    cover: "assents/images/Shut-up-My-Moms-Calling-English-2020-20200211203053-500x500.jpg",
-    src: "assents/audio/Momscalling.mp3",
+    cover: "assets/images/Shut-up-My-Moms-Calling-English-2020-20200211203053-500x500.jpg",
+    src: "assets/audio/Momscalling.mp3",
     theme: { bg: "#0f0c02", accent: "#d4c040", orb1: "#c0a830", orb2: "#8c6820" },
   },
   {
@@ -76,8 +76,8 @@ const DEFAULT_TRACKS = [
     artist: "The Rare Occasions",
     duration: "3:15",
     color: "#0a0510",
-    cover: "assents/images/notion.jpg",
-    src: "assents/audio/notion.mp3",
+    cover: "assets/images/notion.jpg",
+    src: "assets/audio/notion.mp3",
     theme: { bg: "#060310", accent: "#c080e8", orb1: "#9050c8", orb2: "#5a2090" },
   },
   {
@@ -85,8 +85,8 @@ const DEFAULT_TRACKS = [
     artist: "Tyler, The Creator & Kali Uchis",
     duration: "3:00",
     color: "#0a1505",
-    cover: "assents/images/see_you_again.jpg",
-    src: "assents/audio/seeyouagain.mp3",
+    cover: "assets/images/see_you_again.jpg",
+    src: "assets/audio/seeyouagain.mp3",
     theme: { bg: "#050c02", accent: "#78c840", orb1: "#50a020", orb2: "#2d6010" },
   },
 ];
@@ -294,6 +294,7 @@ function makeItem(track) {
         labelArt.style.background = '';
       }
       await dbDelete(track.id);
+      if (window.fbDeleteTrack) window.fbDeleteTrack(track.id);
       TRACKS = TRACKS.filter(t => t !== track);
       buildList(searchInput.value);
     });
@@ -331,6 +332,7 @@ function uploadCover(track, file, artEl) {
     setTimeout(() => artEl.classList.remove('flash'), 800);
     if (state.current === track) renderLabel(track);
     if (track.id != null) dbUpdate(track);
+    if (track.id != null && window.fbUpdateCover) window.fbUpdateCover(track);
   };
   reader.readAsDataURL(file);
 }
@@ -769,6 +771,10 @@ modalSubmit.addEventListener('click', async () => {
 
   await dbAdd(track);
   TRACKS.push(track);
+
+  // Save to Firebase Storage + Firestore
+  if (window.fbSaveTrack) window.fbSaveTrack(track);
+
   closeModal();
   buildList(searchInput.value);
 

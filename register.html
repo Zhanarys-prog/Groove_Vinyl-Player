@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sign Up — Groove</title>
+  <title>Войти — Groove</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="shortcut icon" href="assents/images/SCR-20260314-rkby.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/base.css"/>
   <link rel="stylesheet" href="css/header.css"/>
@@ -24,6 +23,7 @@
 
   <main class="auth-container">
     <div class="auth-card">
+
       <div class="auth-vinyl">
         <svg width="56" height="56" viewBox="0 0 28 28" fill="none">
           <circle cx="14" cy="14" r="13" stroke="var(--accent)" stroke-width="1.2"/>
@@ -32,31 +32,58 @@
           <line x1="14" y1="1" x2="14" y2="8" stroke="var(--accent)" stroke-width="1.2"/>
         </svg>
       </div>
-      <h1 class="auth-title">Create your account</h1>
-      <p class="auth-sub">Save your library and sync across devices.</p>
 
-      <form class="auth-form" id="registerForm">
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tabLogin">Войти</button>
+        <button class="auth-tab" id="tabRegister">Регистрация</button>
+      </div>
+
+      <!-- Login form -->
+      <form class="auth-form" id="loginForm">
         <div class="auth-field">
-          <label for="regName">Display name</label>
-          <input type="text" id="regName" placeholder="Your name" autocomplete="name"/>
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email"/>
+        </div>
+        <div class="auth-field">
+          <label for="loginPassword">Пароль</label>
+          <input type="password" id="loginPassword" placeholder="Ваш пароль" autocomplete="current-password"/>
+        </div>
+        <div class="auth-error" id="loginError"></div>
+        <button type="submit" class="auth-submit" id="loginBtn">Войти</button>
+        <button type="button" class="auth-link-btn" id="forgotBtn">Забыл пароль?</button>
+      </form>
+
+      <!-- Register form -->
+      <form class="auth-form" id="registerForm" style="display:none">
+        <div class="auth-field">
+          <label for="regName">Имя</label>
+          <input type="text" id="regName" placeholder="Твоё имя" autocomplete="name"/>
         </div>
         <div class="auth-field">
           <label for="regEmail">Email</label>
           <input type="email" id="regEmail" placeholder="you@example.com" autocomplete="email"/>
         </div>
         <div class="auth-field">
-          <label for="regPassword">Password</label>
-          <input type="password" id="regPassword" placeholder="At least 8 characters" autocomplete="new-password"/>
+          <label for="regPassword">Пароль</label>
+          <input type="password" id="regPassword" placeholder="Минимум 8 символов" autocomplete="new-password"/>
         </div>
         <div class="auth-field">
-          <label for="regConfirm">Confirm password</label>
-          <input type="password" id="regConfirm" placeholder="Repeat password" autocomplete="new-password"/>
+          <label for="regConfirm">Повтори пароль</label>
+          <input type="password" id="regConfirm" placeholder="Повтори пароль" autocomplete="new-password"/>
         </div>
-        <div class="auth-error" id="authError"></div>
-        <button type="submit" class="auth-submit">Create account</button>
+        <div class="auth-error" id="registerError"></div>
+        <button type="submit" class="auth-submit" id="registerBtn">Создать аккаунт</button>
       </form>
 
-      <p class="auth-footer-text">Already have an account? <a href="#">Sign in</a></p>
+      <!-- Success state -->
+      <div class="auth-success" id="authSuccess" style="display:none">
+        <div class="auth-success-icon">✓</div>
+        <p id="authSuccessMsg">Готово!</p>
+        <a href="index.html" class="auth-submit" style="text-align:center;text-decoration:none;display:block">
+          Открыть плеер
+        </a>
+      </div>
+
     </div>
   </main>
 
@@ -64,6 +91,7 @@
 
   <script src="js/header.js"></script>
   <script src="js/footer.js"></script>
+  <script type="module" src="js/firebase.js"></script>
   <script src="js/register.js"></script>
 </body>
 </html>
