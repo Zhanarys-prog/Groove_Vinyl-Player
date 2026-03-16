@@ -1,5 +1,4 @@
-// Вставь свой client_id от developer.jamendo.com
-// Регистрация бесплатная: https://devportal.jamendo.com
+
 const JAMENDO_CLIENT_ID = 'dd216ce1';
 
 const JAMENDO_API = 'https://api.jamendo.com/v3.0';
