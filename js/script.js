@@ -108,6 +108,7 @@ const state = {
   demoDuration: 0,
   needleDown: false,
 };
+window.state = state;
 
 let TRACKS = [];
 window.TRACKS = TRACKS;
@@ -295,6 +296,7 @@ function makeItem(track) {
       }
       await dbDelete(track.id);
       if (window.fbDeleteTrack) window.fbDeleteTrack(track.id);
+      if (window.cloudDeleteTrack) window.cloudDeleteTrack(track.id);
       TRACKS = TRACKS.filter(t => t !== track);
       buildList(searchInput.value);
     });
@@ -395,6 +397,7 @@ function pickTrack(track, el) {
   if (el) el.classList.add('active');
 
   applyTheme(track);
+  if (window.onLyricsTrackChange) window.onLyricsTrackChange(track);
 
   flyTo(el, track, () => {
     renderLabel(track);
@@ -774,6 +777,8 @@ modalSubmit.addEventListener('click', async () => {
 
   // Save to Firebase Storage + Firestore
   if (window.fbSaveTrack) window.fbSaveTrack(track);
+  // Save to MockAPI cloud
+  if (window.cloudSaveTrack) window.cloudSaveTrack(track);
 
   closeModal();
   buildList(searchInput.value);
